@@ -1,0 +1,42 @@
+@page "/"
+
+<PageTitle>IMC Calc</PageTitle>
+
+<div style="margin-bottom: 20px; margin-top: 20px;">
+    <div class="page-header">Cálculo de IMC</div>
+</div>
+
+<div>
+    <input class="input-text" type="text" value="Altura" />
+</div>
+
+<div>
+    <input class="input-text" type="text" value="Peso" />
+</div>
+
+<div>
+    <input class="input-text" type="text" value="Sexo" />
+</div>
+
+<div class="checkbox-option-empty" style="margin-bottom: 20px; margin-top: 20px;">
+    <input class="checkbox-empty" type="checkbox">
+    <div class="checkbox-text">
+        Eu tenho 65 anos ou mais
+    </div>
+</div>
+
+<div class="buttons">
+    <button class="button-primary">
+        Calcular meu IMC
+    </button>
+
+    <button class="button-secundary">
+        Entenda o cálculo
+    </button>
+</div>
+
+@code {
+
+    const string explicacaoIMC = "O Índice de Massa Corporal (IMC) é uma medida que avalia a relação entre peso e altura de uma pessoa. Ele é amplamente utilizado para estimar se uma pessoa está dentro de um peso saudável para sua altura.\n\nO cálculo do IMC é bastante simples e envolve duas variáveis: peso (em quilogramas) e altura (em metros). A fórmula básica é:\n\nIMC = peso / (altura * altura)\n\nIsso significa que você divide o peso (em quilogramas) pela altura ao quadrado (em metros). O resultado é um número que indica a relação entre o peso e a altura da pessoa.\n\nApós calcular o IMC, ele pode ser interpretado de acordo com as seguintes faixas:\n\n- Abaixo do peso: IMC < 18,5\n- Peso normal: 18,5 <= IMC < 24,9\n- Sobrepeso: 25 <= IMC < 29,9\n- Obesidade grau I: 30 <= IMC < 34,9\n- Obesidade grau II: 35 <= IMC < 39,9\n- Obesidade grau III (mórbida): IMC >= 40\n\nÉ importante ressaltar que o IMC é uma medida básica e não considera outros fatores importantes, como a distribuição de gordura no corpo ou a composição corporal. Portanto, é sempre aconselhável consultar um profissional de saúde para uma avaliação mais completa.\n\nEspero que isso esclareça como funciona o cálculo do IMC!";
+
+  }
