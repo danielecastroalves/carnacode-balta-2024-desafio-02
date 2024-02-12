@@ -1,4 +1,4 @@
-using IMC.Components;
+using IMC.Calc.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

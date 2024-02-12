@@ -1,0 +1,73 @@
+@page "/"
+
+<PageTitle>IMC Calc</PageTitle>
+
+<div style="margin-bottom: 20px; margin-top: 20px;">
+    <div class="page-header">Cálculo de IMC</div>
+</div>
+
+
+<div>
+    <input class="input-text" type="text" value="Altura" />
+</div>
+
+<div>
+    <input class="input-text" type="text" value="Peso" />
+</div>
+
+<div>
+    <input class="input-text" type="text" value="Sexo" />
+</div>
+
+
+<div class="checkbox-option-empty" style="margin-bottom: 20px; margin-top: 20px;">
+    <input class="checkbox-empty" type="checkbox">
+    <div class="checkbox-text">
+        Eu tenho 65 anos ou mais
+    </div>
+</div>
+
+<div class="buttons">
+    <button class="button-primary" @onclick="CalcularIMC">
+        Calcular meu IMC
+    </button>
+
+    <button class="button-secundary" @onclick="MostrarExplicacao">
+        Entenda o cálculo
+    </button>
+</div>
+
+<p>@IMC</p>
+
+@code {
+    public string Altura { get; set; }
+    public string Peso { get; set; }
+    public string Sexo { get; set; }
+
+    public bool IdadeChecked { get; set; }
+
+    public double IMC { get; set; } = 0;
+
+    void CalcularIMC()
+    {
+        // Aqui você pode realizar o cálculo do IMC
+        // Você precisa converter Altura e Peso para double, e usar a lógica de cálculo de IMC
+
+        // Supondo que o IMC seja calculado e armazenado em uma variável chamada "imc"
+        IMC = CalcularIMC(Double.Parse(Peso), Double.Parse(Altura));
+
+        // Redirecionar para a página History e passar o resultado do IMC
+        //NavigationManager.NavigateTo($"/history/{imc}");
+    }
+
+    void MostrarExplicacao()
+    {
+        // Redirecionar para a página que exibe a explicação do cálculo do IMC
+        //NavigationManager.NavigateTo("/explicacaoimc");
+    }
+
+    double CalcularIMC(double peso, double altura)
+    {
+        return peso / (altura * altura);
+    }
+}

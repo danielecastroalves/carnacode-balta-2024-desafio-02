@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMC", "IMC\IMC.csproj", "{EF535587-6A9E-429D-99E6-4E8DB6EB6136}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMC.Calc", "IMC.Calc\IMC.Calc.csproj", "{438A678B-DF70-498F-B9EE-752DFFC8DE27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF535587-6A9E-429D-99E6-4E8DB6EB6136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF535587-6A9E-429D-99E6-4E8DB6EB6136}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF535587-6A9E-429D-99E6-4E8DB6EB6136}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF535587-6A9E-429D-99E6-4E8DB6EB6136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{438A678B-DF70-498F-B9EE-752DFFC8DE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{438A678B-DF70-498F-B9EE-752DFFC8DE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{438A678B-DF70-498F-B9EE-752DFFC8DE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{438A678B-DF70-498F-B9EE-752DFFC8DE27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,75 @@
+@page "/history"
+
+<PageTitle>History</PageTitle>
+
+<div style="margin-bottom: 20px; margin-top: 10px;">
+    <img src="img/icon-no-bg.png" class="icon-no-bg">
+</div>
+
+<div>
+    <div class="page-header">Histórico</div>
+</div>
+
+
+<input class="input-search" type="search" value="Pesquisar..." />
+
+<div class="content-blocks">
+    @* <div class="content-block-small">
+        <div class="content-block"></div>
+        <div class="content-block-header">Peso ideal ✅</div>
+        <div class="content-block-time">8m atrás</div>
+        <div class="content-block-text">
+            Parabéns, você está no seu peso ideal, continue mantendo este estilo!
+        </div>
+        <div class="divider-line"></div>
+    </div>
+
+    <div class="content-block-small">
+        <div class="content-block"></div>
+        <div class="content-block-header">Sobrepeso ⛔️</div>
+        <div class="content-block-time">12/10/2023</div>
+        <div class="content-block-text">
+            Estamos quase lá! Faça alguns ajustes para ficar no peso ideal!
+        </div>
+        <div class="divider-line"></div>
+    </div> *@
+
+    @if (resultadosIMC.Count > 0)
+    {
+        @foreach (var resultado in resultadosIMC)
+        {
+            <div class="content-block-small">
+                <div class="content-block"></div>
+                <div class="content-block-header">IMC: @resultado.IMC</div>
+                <div class="content-block-time">@resultado.Tempo</div>
+                <div class="content-block-text">@resultado.Classificacao</div>
+                <div class="divider-line"></div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum resultado disponível.</p>
+    }
+
+</div>
+
+
+@code {
+    List<ResultadoIMC> resultadosIMC = new List<ResultadoIMC>();
+
+    protected override void OnInitialized()
+    {
+        // Simule resultados para exibição
+        resultadosIMC.Add(new ResultadoIMC { IMC = 23.5, Classificacao = "Peso normal", Tempo = "8m atrás" });
+        resultadosIMC.Add(new ResultadoIMC { IMC = 28.7, Classificacao = "Acima do peso ideal", Tempo = "1h atrás" });
+        resultadosIMC.Add(new ResultadoIMC { IMC = 19.8, Classificacao = "Peso normal", Tempo = "2h atrás" });
+    }
+
+    public class ResultadoIMC
+    {
+        public double IMC { get; set; }
+        public string Classificacao { get; set; } = string.Empty;
+        public string Tempo { get; set; } = string.Empty;
+    }
+}
