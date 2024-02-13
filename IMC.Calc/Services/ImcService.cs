@@ -37,7 +37,7 @@ namespace IMC.Calc.Services
             else if (imc < 39.9)
                 return "Obesidade grau II ❗";
             else
-                return "Obesidade grau III (mórbida) ❗";
+                return "Obesidade grau III ❗";
         }
 
         private static string ObterMensagem(double imc)
