@@ -1,4 +1,8 @@
 @page "/"
+@using IMC.Calc.Services
+@inject NavigationManager Navigation
+@inject ImcService ImcService
+@rendermode InteractiveServer
 
 <PageTitle>IMC Calc</PageTitle>
 
@@ -6,18 +10,17 @@
     <div class="page-header">Cálculo de IMC</div>
 </div>
 
-
-<div>
-    <input class="input-text" type="text" value="Altura" />
-</div>
-
-<div>
-    <input class="input-text" type="text" value="Peso" />
-</div>
-
-<div>
-    <input class="input-text" type="text" value="Sexo" />
-</div>
+<EditForm Model="ImcFormData">
+    <div>
+        <InputText class="input-text" @bind-Value="ImcFormData.Altura" placeholder="Altura" />
+    </div>
+    <div>
+        <InputText class="input-text" @bind-Value="ImcFormData.Peso" placeholder="Peso" />
+    </div>
+    <div>
+        <InputText class="input-text" @bind-Value="ImcFormData.Sexo" placeholder="Sexo" />
+    </div>
+</EditForm>
 
 
 <div class="checkbox-option-empty" style="margin-bottom: 20px; margin-top: 20px;">
@@ -37,33 +40,33 @@
     </button>
 </div>
 
-<p>@IMC</p>
-
 @code {
-    public string Altura { get; set; }
-    public string Peso { get; set; }
-    public string Sexo { get; set; }
 
-    public bool IdadeChecked { get; set; }
+    public class ImcData
+    {
+        public string Altura { get; set; } = string.Empty;
+        public string Peso { get; set; } = string.Empty;
+        public string Sexo { get; set; } = string.Empty;
+        public bool IdadeChecked { get; set; }
+    }
 
-    public double IMC { get; set; } = 0;
+    public ImcData ImcFormData { get; set; } = new();
 
     void CalcularIMC()
     {
-        // Aqui você pode realizar o cálculo do IMC
-        // Você precisa converter Altura e Peso para double, e usar a lógica de cálculo de IMC
+        double altura = Convert.ToDouble(ImcFormData.Altura.Replace(".", ","));
+        double peso = Convert.ToDouble(ImcFormData.Peso.Replace(".", ","));
 
-        // Supondo que o IMC seja calculado e armazenado em uma variável chamada "imc"
-        IMC = CalcularIMC(Double.Parse(Peso), Double.Parse(Altura));
+        double imc = peso / (altura * altura);
 
-        // Redirecionar para a página History e passar o resultado do IMC
-        //NavigationManager.NavigateTo($"/history/{imc}");
+        ImcService.AddResult(imc);
+
+        Navigation.NavigateTo("/history");
     }
 
     void MostrarExplicacao()
     {
-        // Redirecionar para a página que exibe a explicação do cálculo do IMC
-        //NavigationManager.NavigateTo("/explicacaoimc");
+        Navigation.NavigateTo("/entendaimc");
     }
 
     double CalcularIMC(double peso, double altura)
