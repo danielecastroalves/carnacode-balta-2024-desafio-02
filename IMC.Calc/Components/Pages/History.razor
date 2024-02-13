@@ -1,4 +1,5 @@
 @page "/history"
+@using IMC.Calc.Models
 @using IMC.Calc.Services
 @inject NavigationManager Navigation
 @inject ImcService ImcService
@@ -24,27 +25,13 @@
         {
             <div class="content-block-small">
                 <div class="content-block"></div>
-                <div class="content-block-header">IMC: @ClassificarIMC(result.Item1)</div>
-                <div class="content-block-time">@result.Item2.ToString("dd/MM/yyyy")</div>
-                <div class="content-block-text">@ObterMensagem(result.Item1)</div>
+                <div class="content-block-header">IMC: @result.Classification</div>
+                <div class="content-block-time">@result.Date.ToString("dd/MM/yy")</div>
+                <div class="content-block-text">@result.Message)</div>
                 <div class="divider-line"></div>
             </div>
         }
     }
-
-    @*   @if (resultadosIMC.Count > 0)
-    {
-    @foreach (var resultado in resultadosIMC)
-    {
-    <div class="content-block-small">
-    <div class="content-block"></div>
-    <div class="content-block-header">IMC: @resultado.IMC</div>
-    <div class="content-block-time">@resultado.Tempo</div>
-    <div class="content-block-text">@resultado.Classificacao</div>
-    <div class="divider-line"></div>
-    </div>
-    }
-    } *@
     else
     {
         <p>Nenhum resultado disponível.</p>
@@ -52,62 +39,11 @@
 
 </div>
 
-
 @code {
-
-    List<(double, DateTime)> imcResults = new List<(double, DateTime)>();
+    List<ImcResult> imcResults = new List<ImcResult>();
 
     protected override void OnInitialized()
     {
-        imcResults.AddRange(ImcService.GetResults().OrderByDescending(x => x.Item2));        
-    }    
-
-    string ClassificarIMC(double imc)
-    {
-        if (imc < 18.5)
-            return "Abaixo do peso ✅";
-        else if (imc < 24.9)
-            return "Peso normal ✅";
-        else if (imc < 29.9)
-            return "Sobrepeso ❗";
-        else if (imc < 34.9)
-            return "Obesidade grau I ❗";
-        else if (imc < 39.9)
-            return "Obesidade grau II ❗";
-        else
-            return "Obesidade grau III (mórbida) ❗";
+        imcResults.AddRange(ImcService.GetResults().OrderByDescending(x => x.Date));
     }
-
-    string ObterMensagem(double imc)
-    {
-        if (imc < 18.5)
-            return "Você está abaixo do peso.";
-        else if (imc < 24.9)
-            return "Parabéns, você está com o peso normal!";
-        else if (imc < 29.9)
-            return "Cuidado, você está com sobrepeso!";
-        else if (imc < 34.9)
-            return "Atenção, você está com obesidade grau I.";
-        else if (imc < 39.9)
-            return "Cuidado, você está com obesidade grau II.";
-        else
-            return "Alerta! Você está com obesidade grau III (mórbida).";
-    }
-
-
-    // List<ResultadoIMC> resultadosIMC = new List<ResultadoIMC>();
-    // protected override void OnInitialized()
-    // {
-    //     Simule resultados para exibição
-    //     resultadosIMC.Add(new ResultadoIMC { IMC = 23.5, Classificacao = "Peso normal", Tempo = "8m atrás" });
-    //     resultadosIMC.Add(new ResultadoIMC { IMC = 28.7, Classificacao = "Acima do peso ideal", Tempo = "1h atrás" });
-    //     resultadosIMC.Add(new ResultadoIMC { IMC = 19.8, Classificacao = "Peso normal", Tempo = "2h atrás" });
-    // }
-
-    // public class ResultadoIMC
-    // {
-    //     public double IMC { get; set; }
-    //     public string Classificacao { get; set; } = string.Empty;
-    //     public string Tempo { get; set; } = string.Empty;
-    // }
 }
